@@ -5,7 +5,6 @@ public class Points {
 
     int x;
     int y;
-    List<String> sorties = new ArrayList<>();
     boolean constructable = true;
     Points(int x, int y, boolean constructable){
         this.x = x;

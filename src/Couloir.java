@@ -7,14 +7,12 @@ public class Couloir {
     quand on appellera upline on fera :
     gui.drawline(current + x0,current + y0) PUIS
     gui.drawline(current + x1,current + y1)*/
+    int x0;
+    int x1;
+    int y0;
+    int y1;
 
-    int[] upline = {0,0,10,10};
-    int[] downline = {0,0,-10,-10};
-    int[] rightline = {10,10,0,0};
-    int[] leftline = {-10,-10,0,0};
-
-    int[][] Couloirs = {upline, downline, rightline, leftline};
-
+    int[] couloir =
     int[] pickCouloir(){
         /*permet de choisir aléatoirement un couloir parmis les différents couloirs possibles. */
         Random r = new Random();
