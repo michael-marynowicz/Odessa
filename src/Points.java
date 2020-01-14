@@ -10,8 +10,9 @@ public class Points {
     int y;
     int couloirs = 4;
     List<String> sorties = new ArrayList<>();
-    boolean constructable = true;
-    Points(int x, int y, boolean constructable){
+
+    int constructable = 1;
+    Points(int x, int y, int constructable){
         this.x = x;
         this.y = y;
         this.constructable = constructable;
@@ -35,4 +36,5 @@ public class Points {
     public int getY() {
         return y;
     }
+    public int getConstructable() {return constructable;}
 }
