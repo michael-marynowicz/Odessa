@@ -10,16 +10,44 @@ public class Couloir {
     gui.drawline(current + x0,current + y0) PUIS
     gui.drawline(current + x1,current + y1)*/
 
-    int[] upline = {0,0,10,10};
-    int[] downline = {0,0,-10,-10};
-    int[] rightline = {10,10,0,0};
-    int[] leftline = {-10,-10,0,0};
-
-    int[][] Couloirs = {upline, downline, rightline, leftline};
-
-    int[] pickCouloir(){
-        /*permet de choisir aléatoirement un couloir parmis les différents couloirs possibles. */
+    int x;
+    int y;
+    public Couloir(){
         Random r = new Random();
-        return Couloirs[r.nextInt(4)];
+        int aleatoire = r.nextInt(4);
+        switch(aleatoire){
+            case 0:
+                this.y = 10;
+                break;
+            case 1:
+                this.y = -10;
+                break;
+            case 2:
+                this.x = 10;
+                break;
+            default:
+                this.x = -10;
+                break;
+        }
+    }
+    public Couloir(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
+    public Couloir(int n){
+        switch(n){
+            case 0:
+                this.y = 10;
+                break;
+            case 1:
+                this.y = -10;
+                break;
+            case 2:
+                this.x = 10;
+                break;
+            default:
+                this.x = -10;
+                break;
+        }
     }
 }
