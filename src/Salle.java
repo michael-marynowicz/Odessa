@@ -7,7 +7,7 @@ public class Salle {
 
     private int coordonneeX;
     private int coordonneeY;
-    int[][] matriceSalle = {{0,1,1,1,0,0},{0,1,1,1,0,0},{0,1,1,1,0,0},{0,1,1,1,0,0},{0,0,0,1,0,0},{0,0,0,0,0,0}};
+    int[][] matriceSalle = {{0,1,1,1,0,},{0,1,1,1,0,},{0,1,1,1,0,},{0,1,1,1,0,},{0,0,0,1,0,}};
     //Pour la matrice de la salle faudra voir comment on gère nos patternes, pour que ce soit automatisé quoi
 
     Salle(int coordonneeX, int coordonneeY){
