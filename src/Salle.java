@@ -5,33 +5,27 @@ import java.util.Random;
 public class Salle {
     private Random r = new Random();
 
-    private int x;
-    private int y;
+    private int coordonneeX;
+    private int coordonneeY;
+    int[][] matriceSalle = {{0,1,1,1,0,0},{0,1,1,1,0,0},{0,1,1,1,0,0},{0,1,1,1,0,0},{0,0,0,1,0,0},{0,0,0,0,0,0}};
+    //Pour la matrice de la salle faudra voir comment on gère nos patternes, pour que ce soit automatisé quoi
 
-    int[][] tableau = {{0,1,1,1,0,0},{0,1,1,1,0,0},{0,1,1,1,0,0},{0,1,1,1,0,0},{0,0,0,1,0,0},{0,0,0,0,0,0}};
-
-
-    Salle(){
-        x = r.nextInt(20);
-        y = r.nextInt(20);
+    Salle(int coordonneeX, int coordonneeY){
+        this.coordonneeX = coordonneeX;
+        this.coordonneeY = coordonneeY;
     }
 
-    Salle(int x, int y){
-        this.x = x;
-        this.y = y;
+    public int getCoordonneeX() {
+        return coordonneeX;
+    }
+    public int getCoordonneeY() {
+        return coordonneeY;
     }
 
-    public int getX() {
-        return x;
-    }
-    public int getY() {
-        return y;
-    }
-
-    public void getTableau(){
-        for (int[] ints : tableau) {
-            for (int j = 0; j < tableau.length; j++) {
-                if ((j + 1) == tableau.length) {
+    public void printMatrice(){
+        for (int[] ints : matriceSalle) {
+            for (int j = 0; j < matriceSalle.length; j++) {
+                if ((j + 1) == matriceSalle.length) {
                     System.out.print(ints[j]);
                 } else {
                     System.out.print(ints[j] + "   ");
