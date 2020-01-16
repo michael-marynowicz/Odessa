@@ -1,18 +1,31 @@
 package src;
 
-import java.util.Random;
+import java.util.*;
 
 public class Salle {
     private Random r = new Random();
 
     private int coordonneeX;
     private int coordonneeY;
-    int[][] matriceSalle = {{0,1,1,1,0,},{0,1,1,1,0,},{0,1,1,1,0,},{0,1,1,1,0,},{0,0,0,1,0,}};
+    int[][] matriceSalle;
+
     //Pour la matrice de la salle faudra voir comment on gère nos patternes, pour que ce soit automatisé quoi
 
-    Salle(int coordonneeX, int coordonneeY){
+    Salle(){
+        this.coordonneeX = r.nextInt(15);
+        this.coordonneeY = r.nextInt(15);
+        this.matriceSalle = Pattern.map.get(Pattern.getRandomPattern());
+    }
+    Salle(int coordonneeX, int coordonneeY){ //Le pattern est random
         this.coordonneeX = coordonneeX;
         this.coordonneeY = coordonneeY;
+        this.matriceSalle = Pattern.map.get(Pattern.getRandomPattern());
+    }
+
+    Salle(int coordonneeX, int coordonneeY, Pattern pattern){
+        this.coordonneeX = coordonneeX;
+        this.coordonneeY = coordonneeY;
+        this.matriceSalle = Pattern.map.get(pattern); //On défini le pattern de cette salle
     }
 
     public int getCoordonneeX() {
