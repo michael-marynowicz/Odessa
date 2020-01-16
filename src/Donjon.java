@@ -51,7 +51,7 @@ public class Donjon {
         }
     }
     boolean verifierPlacementSalle(Salle salle){
-        if(salle.getCoordonneeX()+5>=this.tailleX || salle.getCoordonneeY()+4>=this.tailleY){
+        if(salle.getCoordonneeX()+4>=this.tailleX || salle.getCoordonneeY()+4>=this.tailleY){
             System.out.println("Impossible de créer la salle : Out Of Bounds");
             return false;
         }
