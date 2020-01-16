@@ -12,8 +12,16 @@ public class Generation {
         Donjon matriceDonjon = new Donjon(20,20);
         matriceDonjon.printDonjon();
         Salle salle = new Salle(14,13);
+        Salle salle1 = new Salle(0,0);
+        Salle salle2 = new Salle(14,3);
+        Salle salle3 = new Salle(8,8);
+        Salle salle4 = new Salle(0,15);
         salle.printMatrice();
         matriceDonjon.ajoutSalle(salle);
+        matriceDonjon.ajoutSalle(salle1);
+        matriceDonjon.ajoutSalle(salle2);
+        matriceDonjon.ajoutSalle(salle3);
+        matriceDonjon.ajoutSalle(salle4);
         matriceDonjon.printDonjon();
 
     }
