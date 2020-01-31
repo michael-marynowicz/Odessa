@@ -1,9 +1,7 @@
 package src;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Donjon {
 
@@ -46,14 +44,14 @@ public class Donjon {
         }
     }
     private boolean verifierPlacementSalle(Salle salle){
-        if(salle.getCoordonneeX()+4>=this.tailleX || salle.getCoordonneeY()+4>=this.tailleY){
+        if(salle.getCoordonneeY()+4>=this.tailleX || salle.getCoordonneeX()+4>=this.tailleY){
             System.out.println("Impossible de créer la salle : Out Of Bounds");
             return false;
         }
         for(int i=0; i < coordonneeSalles.size(); i++){ //On regarde toutes les coordonnées des salles dans le donjon pour éviter la superposition.
             //Ici faudra préciser car la superposition se fait quand même.
-            if(((salle.getCoordonneeX()>= coordonneeSalles.get(i)[0]-5 && salle.getCoordonneeX()<= (coordonneeSalles.get(i)[0]+5))
-                    && (salle.getCoordonneeY()>= coordonneeSalles.get(i)[1]-5 && salle.getCoordonneeY()<= (coordonneeSalles.get(i)[1]+5)))){
+            if(((salle.getCoordonneeY()>= coordonneeSalles.get(i)[0]-5 && salle.getCoordonneeY()<= (coordonneeSalles.get(i)[0]+5))
+                    && (salle.getCoordonneeX()>= coordonneeSalles.get(i)[1]-5 && salle.getCoordonneeX()<= (coordonneeSalles.get(i)[1]+5)))){
                 System.out.println("Impossible de créer la salle : Superposition");
                 return false;
                 //Si ( coordoX < salleX < coordoX+5 ET coordoY < salleY < coordoY+5 ) alors la salle se superpose avec un autre
@@ -68,13 +66,13 @@ public class Donjon {
         if(verifierPlacementSalle(salle)) {
             for (int i = 0; i < 5; i++) {
                 for (int j = 0; j < 5; j++) {
-                    this.matriceDonjon[salle.getCoordonneeX() + i][salle.getCoordonneeY() + j] = salle.matriceSalle[n][m];
+                    this.matriceDonjon[salle.getCoordonneeY() + i][salle.getCoordonneeX() + j] = salle.matriceSalle[n][m];
                     m += 1;
                 }
                 m = 0;
                 n += 1;
             }
-            Integer[] coordonnee = {salle.getCoordonneeX(), salle.getCoordonneeY()};
+            Integer[] coordonnee = {salle.getCoordonneeY(), salle.getCoordonneeX()};
             coordonneeSalles.add(coordonnee);
         }
     }
