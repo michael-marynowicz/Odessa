@@ -52,8 +52,8 @@ public class Donjon {
         }
         for(int i=0; i < coordonneeSalles.size(); i++){ //On regarde toutes les coordonnées des salles dans le donjon pour éviter la superposition.
             //Ici faudra préciser car la superposition se fait quand même.
-            if(((salle.getCoordonneeX()>= coordonneeSalles.get(i)[0] && salle.getCoordonneeX()<= (coordonneeSalles.get(i)[0]+5))
-                    && (salle.getCoordonneeY()>= coordonneeSalles.get(i)[1] && salle.getCoordonneeY()<= (coordonneeSalles.get(i)[1]+5)))){
+            if(((salle.getCoordonneeX()>= coordonneeSalles.get(i)[0]-5 && salle.getCoordonneeX()<= (coordonneeSalles.get(i)[0]+5))
+                    && (salle.getCoordonneeY()>= coordonneeSalles.get(i)[1]-5 && salle.getCoordonneeY()<= (coordonneeSalles.get(i)[1]+5)))){
                 System.out.println("Impossible de créer la salle : Superposition");
                 return false;
                 //Si ( coordoX < salleX < coordoX+5 ET coordoY < salleY < coordoY+5 ) alors la salle se superpose avec un autre
@@ -74,7 +74,7 @@ public class Donjon {
                 m = 0;
                 n += 1;
             }
-            Integer[] coordonnee = {salle.getCoordonneeX(), salle.getCoordonneeX()};
+            Integer[] coordonnee = {salle.getCoordonneeX(), salle.getCoordonneeY()};
             coordonneeSalles.add(coordonnee);
         }
     }

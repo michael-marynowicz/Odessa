@@ -11,16 +11,19 @@ public class Generation {
          */
         Pattern.genPattern();
         Donjon matriceDonjon = new Donjon(20,20);
-        Salle salle = new Salle();
-        Salle salle1 = new Salle();
-        Salle salle2 = new Salle();
-        Salle salle3 = new Salle();
-        Salle salle4 = new Salle();
-        matriceDonjon.ajoutSalle(salle);
+
+        Salle salle1 = new Salle(0,0,Pattern.CARRE);
+        Salle salle2 = new Salle(6,0,Pattern.CARRE);
+        Salle salle3 = new Salle(8,0,Pattern.CARRE);
+        Salle salle4 = new Salle(5,6,Pattern.CARRE);
+        Salle salle5 = new Salle(3,6,Pattern.CARRE);
+        Salle salle6 = new Salle(7,15,Pattern.CARRE);
         matriceDonjon.ajoutSalle(salle1);
         matriceDonjon.ajoutSalle(salle2);
         matriceDonjon.ajoutSalle(salle3);
         matriceDonjon.ajoutSalle(salle4);
+        matriceDonjon.ajoutSalle(salle5);
+        matriceDonjon.ajoutSalle(salle6);
         matriceDonjon.printDonjon();
 
 
