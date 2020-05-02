@@ -9,9 +9,9 @@ public class Couloir {
     quand on appellera upline on fera :
     gui.drawline(current + x0,current + y0) PUIS
     gui.drawline(current + x1,current + y1)*/
-
     int x;
     int y;
+
     public Couloir(){
         Random r = new Random();
         int aleatoire = r.nextInt(4);
@@ -30,10 +30,14 @@ public class Couloir {
                 break;
         }
     }
+
+
     public Couloir(int x, int y){
         this.x = x;
         this.y = y;
     }
+
+
     public Couloir(int n){
         switch(n){
             case 0:
