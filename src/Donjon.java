@@ -1,5 +1,6 @@
 package src;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,14 +13,16 @@ public class Donjon {
     //Permet de bloquer le constructeur par défaut
     private Donjon(){}
 
+
     Donjon(int tailleX, int tailleY){
         this.tailleX = tailleX;
         this.tailleY = tailleY;
         matriceDonjon = genDonjon(tailleX, tailleY);
     }
 
+
     private int[][] genDonjon(int dimensionX, int dimensionY){
-        //Permet de générer le donjon
+        //Creer une matrice remplie de "0" de taille X,Y
         int[][] donjon = new int[dimensionX][dimensionY];
         for(int i = 0; i< donjon.length; i++){
             for(int j = 0; j< donjon.length; j++){
@@ -30,28 +33,29 @@ public class Donjon {
     }
 
 
-    void printDonjon(){
-        //Permet d'afficher le donjon
-        for (int[] ints : this.matriceDonjon) {
+    void printDonjon() throws InterruptedException {
+        for (int[] values : this.matriceDonjon) {
             for (int j = 0; j < this.matriceDonjon.length; j++) {
+                //Thread.sleep(5); 
                 if ((j + 1) == this.matriceDonjon.length) {
-                    System.out.print(ints[j]);
+                    System.out.print(values[j]);
                 } else {
-                    System.out.print(ints[j] + "   ");
+                    System.out.print(values[j] + " ");
                 }
             }
             System.out.print('\n');
         }
     }
+
+
     private boolean verifierPlacementSalle(Salle salle){
-        if(salle.getCoordonneeY()+4>=this.tailleX || salle.getCoordonneeX()+4>=this.tailleY){
+        if(salle.getCoordonneeY()+salle.getHeight()>=this.tailleX || salle.getCoordonneeX()+salle.getWidth()>=this.tailleY){
             System.out.println("Impossible de créer la salle : Out Of Bounds");
             return false;
         }
         for(int i=0; i < coordonneeSalles.size(); i++){ //On regarde toutes les coordonnées des salles dans le donjon pour éviter la superposition.
-            //Ici faudra préciser car la superposition se fait quand même.
-            if(((salle.getCoordonneeY()>= coordonneeSalles.get(i)[0]-5 && salle.getCoordonneeY()<= (coordonneeSalles.get(i)[0]+5))
-                    && (salle.getCoordonneeX()>= coordonneeSalles.get(i)[1]-5 && salle.getCoordonneeX()<= (coordonneeSalles.get(i)[1]+5)))){
+            if(((salle.getCoordonneeY()>= coordonneeSalles.get(i)[0]-salle.getHeight() && salle.getCoordonneeY()<= (coordonneeSalles.get(i)[0]+salle.getHeight()))
+                    && (salle.getCoordonneeX()>= coordonneeSalles.get(i)[1]-salle.getWidth() && salle.getCoordonneeX()<= (coordonneeSalles.get(i)[1]+salle.getWidth())))){
                 System.out.println("Impossible de créer la salle : Superposition");
                 return false;
                 //Si ( coordoX < salleX < coordoX+5 ET coordoY < salleY < coordoY+5 ) alors la salle se superpose avec un autre
@@ -61,16 +65,17 @@ public class Donjon {
         return true; //Arrivé ici on ne peut pas se superposer à une autre salle
     }
 
+
     void ajoutSalle(Salle salle) {
-        int n = 0, m = 0;
+        int donjonY = 0, donjonX = 0;
         if(verifierPlacementSalle(salle)) {
-            for (int i = 0; i < 5; i++) {
-                for (int j = 0; j < 5; j++) {
-                    this.matriceDonjon[salle.getCoordonneeY() + i][salle.getCoordonneeX() + j] = salle.matriceSalle[n][m];
-                    m += 1;
+            for (int salleY = 0; salleY < salle.getHeight(); salleY++) {
+                for (int salleX = 0; salleX < salle.getWidth(); salleX++) {
+                    this.matriceDonjon[salle.getCoordonneeY() + salleY][salle.getCoordonneeX() + salleX] = salle.matriceSalle[donjonY][donjonX];
+                    donjonX += 1;
                 }
-                m = 0;
-                n += 1;
+                donjonX = 0;
+                donjonY += 1;
             }
             Integer[] coordonnee = {salle.getCoordonneeY(), salle.getCoordonneeX()};
             coordonneeSalles.add(coordonnee);
