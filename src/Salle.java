@@ -12,6 +12,16 @@ public class Salle {
     int[][] matriceSalle;
 
 
+    Salle(){
+        this.coordonneeY = r.nextInt(15);
+        this.coordonneeX = r.nextInt(15);
+        int i = this.r.nextInt(Pattern.values().length);
+        Pattern lol = Pattern.values()[i];
+        this.matriceSalle = Pattern.map.get(lol); //Cree une salle rectangulaire
+        this.width = 5;
+        this.height = 5;
+    }
+
     Salle(int coordonneeY, int coordonneeX){
         this.coordonneeY = coordonneeY;
         this.coordonneeX = coordonneeX;

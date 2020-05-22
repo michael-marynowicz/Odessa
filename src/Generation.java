@@ -11,12 +11,13 @@ public class Generation {
         Pattern.genPattern();
         Donjon matriceDonjon = new Donjon(20,20);
 
-        Salle salle1 = new Salle(0,0);
-        Salle salle2 = new Salle(6,0);
-        Salle salle3 = new Salle(8,0);
-        Salle salle4 = new Salle(5,6);
-        Salle salle5 = new Salle(3,6);
-        Salle salle6 = new Salle(7,15);
+        Salle salle1 = new Salle();
+        Salle salle2 = new Salle();
+        Salle salle3 = new Salle();
+        Salle salle4 = new Salle();
+        Salle salle5 = new Salle();
+        Salle salle6 = new Salle();
+
         matriceDonjon.ajoutSalle(salle1);
         matriceDonjon.ajoutSalle(salle2);
         matriceDonjon.ajoutSalle(salle3);
@@ -24,12 +25,7 @@ public class Generation {
         matriceDonjon.ajoutSalle(salle5);
         matriceDonjon.ajoutSalle(salle6);
         matriceDonjon.printDonjon();
-        System.out.println(salle1.getCoordonneeX() +" : " + salle1.getCoordonneeY());
-        System.out.println(salle2.getCoordonneeX() +" : " + salle2.getCoordonneeY());
-        System.out.println(salle3.getCoordonneeX() +" : " + salle3.getCoordonneeY());
-        System.out.println(salle4.getCoordonneeX() +" : " + salle4.getCoordonneeY());
-        System.out.println(salle5.getCoordonneeX() +" : " + salle5.getCoordonneeY());
-        System.out.println(salle6.getCoordonneeX() +" : " + salle6.getCoordonneeY());
+
 
 
     }
