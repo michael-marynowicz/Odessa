@@ -38,8 +38,8 @@ public class Salle {
 
     public void genSalle(){
         //Crée des patterns rectangulaires aleatoires. (min 2x2, max 7x5)
-        int height = r.nextInt(5)+2;
-        int width = r.nextInt(4)+2;
+        int height = r.nextInt(3)+2;
+        int width = r.nextInt(3)+2;
         int[][] rectPattern = new int[height][width];
         for(int h=0; h<height; h++){
             for(int w=0; w<width;w++){
@@ -54,8 +54,8 @@ public class Salle {
 
     public void printSalle(){
         for (int[] values : matriceSalle) {
-            for (int j = 0; j < matriceSalle.length; j++) {
-                if ((j + 1) == matriceSalle.length) {
+            for (int j = 0; j < values.length; j++) {
+                if ((j + 1) == values.length) {
                     System.out.print(values[j]);
                 } else {
                     System.out.print(values[j] + " ");
