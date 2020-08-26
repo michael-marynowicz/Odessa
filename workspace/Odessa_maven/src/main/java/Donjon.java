@@ -5,7 +5,7 @@ import java.util.List;
 public class Donjon {
 
     private int tailleX, tailleY;
-    private int[][] matriceDonjon;
+    private Case[][] matriceDonjon;
     private List<Integer[]> coordonneeSalles = new ArrayList<Integer[]>(); //Contient les coordonnées des salles sous la forme : [[x1,y1,x2,y2],....]
 
     //Permet de bloquer le constructeur par défaut
@@ -19,12 +19,12 @@ public class Donjon {
     }
 
 
-    private int[][] genDonjon(int dimensionX, int dimensionY){
+    private Case[][] genDonjon(int dimensionX, int dimensionY){
         //Creer une matrice remplie de "0" de taille X,Y
-        int[][] donjon = new int[dimensionY][dimensionX];
+        Case[][] donjon = new Case[dimensionY][dimensionX];
         for(int i = 0; i< dimensionY; i++){
             for(int j = 0; j< dimensionX; j++){
-                donjon[i][j] = 0;
+                donjon[i][j] = Pattern.Mur;
             }
         }
         return donjon;
@@ -32,22 +32,29 @@ public class Donjon {
 
 
     void printDonjon() {
-        for (int[] values : this.matriceDonjon) {
+        for (Case[] values : this.matriceDonjon) {
             for (int j = 0; j < values.length; j++) {
                 //Thread.sleep(5); 
                 if ((j + 1) == values.length) {
-                    if (values[j] == 1){
-                        System.out.print(ConsoleColors.BLUE + values[j] + ConsoleColors.RESET);
-                    }else{
-                        System.out.print(ConsoleColors.RESET + values[j]);
+                    if ( values[j] == Pattern.Simple){
+                        System.out.print(ConsoleColors.BLUE + values[j].getPrintConsole() + ConsoleColors.RESET);
+                    }
+                    else if(values[j] == Pattern.Porte ){
+                        System.out.print(ConsoleColors.RED + values[j].getPrintConsole() + ConsoleColors.RESET);
+                    }
+                    else{
+                        System.out.print(ConsoleColors.RESET + values[j].getPrintConsole());
                     }
 
                 } else {
-                    if (values[j] == 1){
-                        System.out.print(ConsoleColors.BLUE + values[j] + " ");
+                    if (values[j] == Pattern.Simple){
+                        System.out.print(ConsoleColors.BLUE + values[j].getPrintConsole() + " ");
+                    }
+                    else if(values[j] == Pattern.Porte  ){
+                        System.out.print(ConsoleColors.RED + values[j].getPrintConsole() + " ");
                     }
                     else{
-                        System.out.print(ConsoleColors.RESET + values[j] + " ");
+                        System.out.print(ConsoleColors.RESET + values[j].getPrintConsole() + " ");
                     }
 
                 }

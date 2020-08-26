@@ -7,17 +7,17 @@ public class Salle {
     private int coordonneeX;
     private int height;
     private int width;
-    int[][] matriceSalle;
+    Case[][] matriceSalle;
 
 
     Salle(){
         this.coordonneeY = r.nextInt(Generation.tailleY - 5);
         this.coordonneeX = r.nextInt(Generation.tailleX - 5);
         int i = this.r.nextInt(Pattern.values().length);
-        Pattern lol = Pattern.values()[i];
-        this.matriceSalle = Pattern.map.get(lol); //Récupère la matrice du pattern
-        this.width = Pattern.map.get(lol)[0].length;
-        this.height = Pattern.map.get(lol).length;
+        Pattern pat = Pattern.values()[i];
+        this.matriceSalle = Pattern.map.get(pat); //Récupère la matrice du pattern
+        this.width = Pattern.map.get(pat)[0].length;
+        this.height = Pattern.map.get(pat).length;
     }
 
     Salle(int coordonneeY, int coordonneeX){
@@ -34,14 +34,17 @@ public class Salle {
     }
 
 
-    public void genSalle(){
+    public void genSalle(){ //TODO Faire que le if passe (il permet de faire des portes)
         //Crée des patterns rectangulaires aleatoires. (min 2x2, max 7x5)
         int height = r.nextInt(4)+2;
         int width = r.nextInt(4)+2;
-        int[][] rectPattern = new int[height][width];
+        Case[][] rectPattern = new Case[height][width];
         for(int h=0; h<height; h++){
             for(int w=0; w<width;w++){
-                rectPattern[h][w] = 1;
+                if((h == 0 && w == 0) || (h == (int) height/2 && w == 0) || (h == (int) height/2 && w == width) || (h == height && w == (int) width/2)){ //La condition passe jamais
+                    rectPattern[h][w] = Pattern.Porte;
+                }
+                rectPattern[h][w] = Pattern.Simple;
             }
         }
         this.matriceSalle = rectPattern;
@@ -51,12 +54,12 @@ public class Salle {
 
 
     public void printSalle(){
-        for (int[] values : matriceSalle) {
+        for (Case[] values : matriceSalle) {
             for (int j = 0; j < values.length; j++) {
                 if ((j + 1) == values.length) {
-                    System.out.print(values[j]);
+                    System.out.print(values[j].getPrintConsole());
                 } else {
-                    System.out.print(values[j] + " ");
+                    System.out.print(values[j].getPrintConsole() + " ");
                 }
             }
             System.out.print('\n');

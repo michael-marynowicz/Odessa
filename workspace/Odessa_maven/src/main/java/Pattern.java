@@ -4,18 +4,21 @@ import java.util.Random;
 public enum Pattern {
     ISOLOIR, CARRE, FUMOIR, T, ARC;
 
-    static HashMap<Pattern, int[][]> map = new HashMap<Pattern, int[][]>();
+    static HashMap<Pattern, Case[][]> map = new HashMap<Pattern, Case[][]>();
+    static Case Porte = new Case(true, 2);
+    static Case Simple = new Case(false);
+    static Case Mur = new Case(0);
 
     public static void genPattern(){
-        int[][] isoloir = {{1,1},{1,1}};
+        Case[][] isoloir = {{Simple,Porte,Simple},{Porte,Simple,Porte},{Simple,Porte,Simple}};
         map.put(ISOLOIR, isoloir);
-        int[][] carre = {{1,1,1,1,1},{1,1,1,1,1},{1,1,1,1,1},{1,1,1,1,1},{1,1,1,1,1}};
+        Case[][] carre = {{Simple,Simple,Porte,Simple,Simple},{Simple,Simple,Simple,Simple,Simple},{Porte,Simple,Simple,Simple,Porte},{Simple,Simple,Simple,Simple,Simple},{Simple,Simple,Porte,Simple,Simple}};
         map.put(CARRE, carre);
-        int[][] fumoir = {{1,1,1,1,0},{1,1,1,1,0},{1,1,1,1,0},{0,0,0,1,0}};
+        Case[][] fumoir = {{Simple,Simple,Porte,Simple,Mur},{Porte,Simple,Simple,Simple,Mur},{Simple,Simple,Simple,Simple,Mur},{Mur,Mur,Mur,Simple,Mur}};
         map.put(FUMOIR, fumoir);
-        int[][] t = {{1,1,1,1,1},{0,1,1,1,0},{0,1,1,1,0},{0,0,1,0,0},{0,0,1,0,0}};
+        Case[][] t = {{Porte,Simple,Simple,Simple,Porte},{Mur,Simple,Simple,Simple,Mur},{Mur,Simple,Simple,Simple,Mur},{Mur,Mur,Simple,Mur,Mur},{Mur,Mur,Porte,Mur,Mur}};
         map.put(T, t);
-        int[][] arc = {{1,1,1,1,1},{1,1,1,1,1},{1,1,0,1,1},{1,1,0,1,1}};
+        Case[][] arc = {{Simple,Simple,Porte,Simple,Simple},{Simple,Simple,Simple,Simple,Simple},{Simple,Simple,Mur,Simple,Simple},{Porte,Simple,Mur,Simple,Porte}};
         map.put(ARC, arc);
     }
 
