@@ -11,8 +11,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SalleTest {
 
-
-
     @Test
     void genSalleTest() {
         //je gen un rectangle
@@ -28,8 +26,4 @@ class SalleTest {
         assertTrue(1 < salle.getWidth(), "Error, random is too low");
     }
 
-    @Test
-    void printSalle() {
-
-    }
 }

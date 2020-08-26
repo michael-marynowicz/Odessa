@@ -6,7 +6,7 @@ public class Donjon {
 
     private int tailleX, tailleY;
     private int[][] matriceDonjon;
-    private List<Integer[]> coordonneeSalles = new ArrayList<Integer[]>(); //Contient les coordonnées des salles sous la forme : [[x1,y1],[x2,y2],[x3,y3]]
+    private List<Integer[]> coordonneeSalles = new ArrayList<Integer[]>(); //Contient les coordonnées des salles sous la forme : [[x1,y1,x2,y2],....]
 
     //Permet de bloquer le constructeur par défaut
     private Donjon(){}
@@ -21,9 +21,9 @@ public class Donjon {
 
     private int[][] genDonjon(int dimensionX, int dimensionY){
         //Creer une matrice remplie de "0" de taille X,Y
-        int[][] donjon = new int[dimensionX][dimensionY];
-        for(int i = 0; i< donjon.length; i++){
-            for(int j = 0; j< donjon.length; j++){
+        int[][] donjon = new int[dimensionY][dimensionX];
+        for(int i = 0; i< dimensionY; i++){
+            for(int j = 0; j< dimensionX; j++){
                 donjon[i][j] = 0;
             }
         }
@@ -31,18 +31,30 @@ public class Donjon {
     }
 
 
-    void printDonjon() throws InterruptedException {
+    void printDonjon() {
         for (int[] values : this.matriceDonjon) {
-            for (int j = 0; j < this.matriceDonjon.length; j++) {
+            for (int j = 0; j < values.length; j++) {
                 //Thread.sleep(5); 
-                if ((j + 1) == this.matriceDonjon.length) {
-                    System.out.print(values[j]);
+                if ((j + 1) == values.length) {
+                    if (values[j] == 1){
+                        System.out.print(ConsoleColors.BLUE + values[j] + ConsoleColors.RESET);
+                    }else{
+                        System.out.print(ConsoleColors.RESET + values[j]);
+                    }
+
                 } else {
-                    System.out.print(values[j] + " ");
+                    if (values[j] == 1){
+                        System.out.print(ConsoleColors.BLUE + values[j] + " ");
+                    }
+                    else{
+                        System.out.print(ConsoleColors.RESET + values[j] + " ");
+                    }
+
                 }
             }
             System.out.print('\n');
         }
+        System.out.println("Nombre de pièces dans le donjon : " + coordonneeSalles.size() + "/" + Generation.nbPiece);
     }
 
 
@@ -52,8 +64,8 @@ public class Donjon {
             return false;
         }
         for(int i=0; i < coordonneeSalles.size(); i++){ //On regarde toutes les coordonnées des salles dans le donjon pour éviter la superposition.
-            if(((salle.getCoordonneeY()>= coordonneeSalles.get(i)[0]-salle.getHeight() && salle.getCoordonneeY()<= (coordonneeSalles.get(i)[0]+salle.getHeight()))
-                    && (salle.getCoordonneeX()>= coordonneeSalles.get(i)[1]-salle.getWidth() && salle.getCoordonneeX()<= (coordonneeSalles.get(i)[1]+salle.getWidth())))){
+            if(((salle.getCoordonneeY() >= coordonneeSalles.get(i)[0] - salle.getHeight() && salle.getCoordonneeY() <= (coordonneeSalles.get(i)[0] + coordonneeSalles.get(i)[2]))
+                    && (salle.getCoordonneeX() >= coordonneeSalles.get(i)[1] - salle.getWidth() && salle.getCoordonneeX()<= (coordonneeSalles.get(i)[1]+coordonneeSalles.get(i)[3])))){
                 System.out.println("Impossible de créer la salle : Superposition");
                 return false;
                 //Si ( coordoX < salleX < coordoX+5 ET coordoY < salleY < coordoY+5 ) alors la salle se superpose avec un autre
@@ -65,17 +77,12 @@ public class Donjon {
 
 
     void ajoutSalle(Salle salle) {
-        int donjonY = 0, donjonX = 0;
         if(verifierPlacementSalle(salle)) {
             for (int salleY = 0; salleY < salle.getHeight(); salleY++) {
-                for (int salleX = 0; salleX < salle.getWidth(); salleX++) {
-                    this.matriceDonjon[salle.getCoordonneeY() + salleY][salle.getCoordonneeX() + salleX] = salle.matriceSalle[donjonY][donjonX];
-                    donjonX += 1;
-                }
-                donjonX = 0;
-                donjonY += 1;
+                if (salle.getWidth() >= 0)
+                    System.arraycopy(salle.matriceSalle[salleY], 0, this.matriceDonjon[salle.getCoordonneeY() + salleY], salle.getCoordonneeX(), salle.getWidth());
             }
-            Integer[] coordonnee = {salle.getCoordonneeY(), salle.getCoordonneeX()};
+            Integer[] coordonnee = {salle.getCoordonneeY(), salle.getCoordonneeX(), salle.getHeight(), salle.getWidth()};
             coordonneeSalles.add(coordonnee);
         }
     }

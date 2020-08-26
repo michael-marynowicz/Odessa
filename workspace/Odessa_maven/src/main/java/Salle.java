@@ -11,13 +11,13 @@ public class Salle {
 
 
     Salle(){
-        this.coordonneeY = r.nextInt(15);
-        this.coordonneeX = r.nextInt(15);
+        this.coordonneeY = r.nextInt(Generation.tailleY - 5);
+        this.coordonneeX = r.nextInt(Generation.tailleX - 5);
         int i = this.r.nextInt(Pattern.values().length);
         Pattern lol = Pattern.values()[i];
-        this.matriceSalle = Pattern.map.get(lol); //Cree une salle rectangulaire
-        this.width = 5;
-        this.height = 5;
+        this.matriceSalle = Pattern.map.get(lol); //Récupère la matrice du pattern
+        this.width = Pattern.map.get(lol)[0].length;
+        this.height = Pattern.map.get(lol).length;
     }
 
     Salle(int coordonneeY, int coordonneeX){
@@ -25,21 +25,19 @@ public class Salle {
         this.coordonneeX = coordonneeX;
         this.genSalle(); //Cree une salle rectangulaire
     }
-
-
     Salle(int coordonneeY, int coordonneeX, Pattern pattern){ // Permet de choisir un pattern Pré-défini
         this.coordonneeY = coordonneeY;
         this.coordonneeX = coordonneeX;
-        this.matriceSalle = Pattern.map.get(pattern); 
-        this.height = 5; //Nécessaire pour pouvoir ajouter la salle et tester les cas de collisions
-        this.width = 5; 
+        this.matriceSalle = Pattern.map.get(pattern);
+        this.width = Pattern.map.get(pattern)[0].length;
+        this.height = Pattern.map.get(pattern).length;
     }
 
 
     public void genSalle(){
         //Crée des patterns rectangulaires aleatoires. (min 2x2, max 7x5)
-        int height = r.nextInt(3)+2;
-        int width = r.nextInt(3)+2;
+        int height = r.nextInt(4)+2;
+        int width = r.nextInt(4)+2;
         int[][] rectPattern = new int[height][width];
         for(int h=0; h<height; h++){
             for(int w=0; w<width;w++){
