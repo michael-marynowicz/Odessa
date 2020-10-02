@@ -11,11 +11,14 @@ public class Generation {
         On peut voir si on le met dans une classe à part ou pas.
          */
         Pattern.genPattern();
+
         Donjon matriceDonjon = new Donjon(tailleX,tailleY);
-
-
+        Salle salle0 = new Salle();
+        salle0.matriceSalle = Pattern.suppr_Porte(Pattern.CARRE, Pattern.reperePorte(Pattern.CARRE));
+        salle0.printSalle();
         for(int i = 0; i < nbPiece; i++){
             Salle salle1 = new Salle();
+
             matriceDonjon.ajoutSalle(salle1);
         }
 

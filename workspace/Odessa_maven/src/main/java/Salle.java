@@ -64,6 +64,7 @@ public class Salle {
             }
             System.out.print('\n');
         }
+        System.out.print('\n');
     }
     public int getCoordonneeY() { return coordonneeY; }
     public int getCoordonneeX() { return coordonneeX; }

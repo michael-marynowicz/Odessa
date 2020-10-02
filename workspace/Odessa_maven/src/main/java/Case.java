@@ -2,7 +2,8 @@ public class Case {
 
     private boolean isDoor;
     public int printConsole = 1;
-
+    private int coordonneeY;
+    private int coordonneeX;
 
     private Case(){}
 
