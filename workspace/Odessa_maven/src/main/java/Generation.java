@@ -12,14 +12,9 @@ public class Generation {
          */
         Pattern.genPattern();
         Donjon matriceDonjon = new Donjon(tailleX,tailleY);
-        Salle salle0 = new Salle();
-        salle0.matriceSalle = Pattern.suppr_Porte(Pattern.CARRE, Pattern.reperePorte(Pattern.CARRE));
-        salle0.printSalle();
-        salle0.matriceSalle = Pattern.map.get(Pattern.CARRE);
-        salle0.printSalle();
         for(int i = 0; i < nbPiece; i++){
             Salle salle1 = new Salle();
-
+            salle1.suppr_Porte();
             matriceDonjon.ajoutSalle(salle1);
         }
 

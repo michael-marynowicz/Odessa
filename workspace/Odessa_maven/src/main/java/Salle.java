@@ -53,6 +53,44 @@ public class Salle {
     }
 
 
+    private ArrayList<ArrayList<Integer>> reperePorte() {
+
+        ArrayList<ArrayList<Integer>> liste = new ArrayList<>();
+        for(int i=0; i < this.matriceSalle.length; i++){
+            for(int j=0; j < this.matriceSalle[i].length; j++){
+                if(this.matriceSalle[i][j].isDoor()){
+                    ArrayList<Integer> sous = new ArrayList<Integer>();
+                    sous.add(i);
+                    sous.add(j);
+                    liste.add(sous);
+                }
+            }
+        }
+        //System.out.println(liste);
+        return liste;
+    }
+
+    public void suppr_Porte(){
+        Case[][] oui = new Case[this.matriceSalle.length][];
+        ArrayList<ArrayList<Integer>> pos = this.reperePorte();
+        for (int w= 0; w < this.matriceSalle.length; w++) {
+            oui[w] = Arrays.copyOf(this.matriceSalle[w], this.matriceSalle[w].length);
+        }
+        int porte_restante = pos.size();
+        for(int i = 0; i < pos.size(); i++){
+            Random random = new Random();
+            int luck = random.nextInt(2);
+            if(luck == 1 & porte_restante > 2){
+                porte_restante -- ;
+                ArrayList<Integer> nui = pos.get(i);
+                oui[nui.get(0)][nui.get(1)] = Pattern.Simple;
+            }
+        }
+        this.matriceSalle =  oui;
+
+
+    }
+
     public void printSalle(){
         for (Case[] values : matriceSalle) {
             for (int j = 0; j < values.length; j++) {
