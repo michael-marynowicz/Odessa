@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -46,12 +47,14 @@ public enum Pattern {
     }
 
     public static Case[][] suppr_Porte(Pattern salle,  ArrayList<ArrayList<Integer>> pos){
-        Case[][] oui = map.get(salle);
+        Case[][] oui = new Case[map.get(salle).length][];
+        for (int w= 0; w < map.get(salle).length; w++) {
+            oui[w] = Arrays.copyOf(map.get(salle)[w], map.get(salle)[w].length);
+        }
         int porte_enlever = 0;
         for(int i = 0; i < pos.size(); i++){
             Random random = new Random();
             int luck = random.nextInt(2);
-            System.out.println("LA LUCK " + luck);
             if(luck == 1 & porte_enlever < (pos.size()-1)){
                 porte_enlever ++ ;
                 ArrayList<Integer> nui = pos.get(i);
