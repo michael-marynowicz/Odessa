@@ -109,6 +109,7 @@ public class Salle {
     }
 
    public void printSalle(){
+        //On peut surement supprimer ça
         for (Case[] values : matriceSalle) {
             for (int j = 0; j < values.length; j++) {
                 if ((j + 1) == values.length) {
