@@ -20,14 +20,6 @@ public class Case {
         this.isDoor = true;
     }
 
-
-    public boolean isDoor() {
-        return isDoor;
-    }
-
-    public int getPrintConsole(){
-        return this.printConsole;
-    }
-
-
+    public boolean isDoor() { return isDoor; }
+    public int getPrintConsole(){ return this.printConsole; }
 }

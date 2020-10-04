@@ -23,10 +23,5 @@ public enum Pattern {
         Case[][] arc = {{Simple, Simple, Porte, Simple, Simple}, {Simple, Simple, Simple, Simple, Simple}, {Simple, Simple, Mur, Simple, Simple}, {Porte, Simple, Mur, Simple, Porte}};
         map.put(ARC, arc);
     }
-
-    public static Pattern getRandomPattern() {
-        Random random = new Random();
-        return values()[random.nextInt(values().length)];
-    }
 }
 

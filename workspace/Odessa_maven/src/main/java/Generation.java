@@ -13,9 +13,9 @@ public class Generation {
         Pattern.genPattern();
         Donjon matriceDonjon = new Donjon(tailleX,tailleY);
         for(int i = 0; i < nbPiece; i++){
-            Salle salle1 = new Salle();
-            salle1.suppr_Porte();
-            matriceDonjon.ajoutSalle(salle1);
+            Salle salle = new Salle();
+            salle.suppr_Porte();
+            matriceDonjon.ajoutSalle(salle);
         }
 
         matriceDonjon.printDonjon();
