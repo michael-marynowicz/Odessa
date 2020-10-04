@@ -1,7 +1,10 @@
+package test.java;
+
+import main.java.Pattern;
+import main.java.Salle;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.Mockito;
+
 
 import java.util.Random;
 
@@ -26,4 +29,14 @@ class SalleTest {
         assertTrue(1 < salle.getWidth(), "Error, random is too low");
     }
 
+    @Test
+    void testSallesame(){
+        Pattern.genPattern();
+        Salle s = new Salle(20,20, Pattern.ARC);
+        s.suppr_Porte();
+        Salle s1 = new Salle(10,11, Pattern.ARC);
+
+        s.printSalle();
+        s1.printSalle();
+    }
 }

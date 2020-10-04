@@ -1,3 +1,5 @@
+package main.java;
+
 public class Case {
 
     private boolean isDoor;
