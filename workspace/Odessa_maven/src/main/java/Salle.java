@@ -14,7 +14,7 @@ public class Salle {
 
     public Salle(){
         this.coordonneeY = r.nextInt(Generation.tailleY - 5);
-        this.coordonneeX = r.nextInt(Generation.tailleX - 5);
+        this.coordonneeX = r.nextInt(Generation.tailleX - 4);
         int i = this.r.nextInt(Pattern.values().length);
         Pattern pat = Pattern.values()[i];
         this.matriceSalle = new Case[Pattern.map.get(pat).length][];
@@ -81,9 +81,9 @@ public class Salle {
     }
 
     public boolean porteMalPlacee(ArrayList<Integer> CoordonneePorte){
-        if(CoordonneePorte.get(1)+this.coordonneeX -1 <= 0) { return true; }
-        if(CoordonneePorte.get(1)+this.coordonneeX +1 >= Generation.tailleX) { return true; }
-        if(CoordonneePorte.get(0)+this.coordonneeY -1 <= 0) { return true; }
+        if(CoordonneePorte.get(1) == 0 && this.coordonneeX == 0) { return true; }
+        if(CoordonneePorte.get(1) + this.coordonneeX +1 >= Generation.tailleX) { return true; }
+        if(CoordonneePorte.get(0) == 0  && this.coordonneeY <= 0) { return true; }
         return CoordonneePorte.get(0) + this.coordonneeY + 1 >= Generation.tailleY;
     }
 
@@ -100,6 +100,7 @@ public class Salle {
             if(porteMalPlacee(this.positionDesPortes.get(porte))){
                 effacerPorte(this.positionDesPortes.get(porte));
                 this.positionDesPortes.remove(porte);
+                porte--;
             }
         }
     }
@@ -109,7 +110,7 @@ public class Salle {
         ArrayList<ArrayList<Integer>> tampon = new ArrayList<ArrayList<Integer>>(positionDesPortes);
         int inTampon = 0;
         for(int porte=0; porte < this.positionDesPortes.size(); porte++){
-            if((r.nextInt(2)==1) & porte_restante > 2){ //une chance sur 2 de supprimer une porte si on a plus de 2 portes
+            if((r.nextInt(3)==1) & porte_restante > 2){ //une chance sur 2 de supprimer une porte si on a plus de 2 portes
                 effacerPorte(tampon.get(inTampon));
                 tampon.remove(inTampon);
                 if(inTampon >0){ //Ouais je sais c'est moche mais jdois aller manger j'ai pas eu le temps de faire mieux
