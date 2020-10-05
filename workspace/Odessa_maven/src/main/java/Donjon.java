@@ -1,3 +1,5 @@
+package main.java;
+
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,6 +67,7 @@ public class Donjon {
     }
 
 
+
     private boolean verifierPlacementSalle(Salle salle){
         if(salle.getCoordonneeY()+salle.getHeight()>this.tailleY || salle.getCoordonneeX()+salle.getWidth()>this.tailleX){
             System.out.println("Impossible de créer la salle : Out Of Bounds");
@@ -73,7 +76,7 @@ public class Donjon {
         for(int i=0; i < coordonneeSalles.size(); i++){ //On regarde toutes les coordonnées des salles dans le donjon pour éviter la superposition.
             if(((salle.getCoordonneeY() >= coordonneeSalles.get(i)[0] - salle.getHeight() && salle.getCoordonneeY() <= (coordonneeSalles.get(i)[0] + coordonneeSalles.get(i)[2]))
                     && (salle.getCoordonneeX() >= coordonneeSalles.get(i)[1] - salle.getWidth() && salle.getCoordonneeX()<= (coordonneeSalles.get(i)[1]+coordonneeSalles.get(i)[3])))){
-                System.out.println("Impossible de créer la salle : Superposition");
+
                 return false;
                 //Si ( coordoX < salleX < coordoX+5 ET coordoY < salleY < coordoY+5 ) alors la salle se superpose avec un autre
                 //donc on la crée pas
@@ -93,4 +96,5 @@ public class Donjon {
             coordonneeSalles.add(coordonnee);
         }
     }
+
 }

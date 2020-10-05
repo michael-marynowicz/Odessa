@@ -1,8 +1,11 @@
+package main.java;
+
 public class Case {
 
     private boolean isDoor;
     public int printConsole = 1;
-
+    private int coordonneeY;
+    private int coordonneeX;
 
     private Case(){}
 
@@ -19,14 +22,6 @@ public class Case {
         this.isDoor = true;
     }
 
-
-    public boolean isDoor() {
-        return isDoor;
-    }
-
-    public int getPrintConsole(){
-        return this.printConsole;
-    }
-
-
+    public boolean isDoor() { return isDoor; }
+    public int getPrintConsole(){ return this.printConsole; }
 }

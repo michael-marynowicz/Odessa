@@ -1,3 +1,5 @@
+package main.java;
+
 import java.util.ArrayList;
 
 public class Generation {
@@ -12,11 +14,10 @@ public class Generation {
          */
         Pattern.genPattern();
         Donjon matriceDonjon = new Donjon(tailleX,tailleY);
-
-
         for(int i = 0; i < nbPiece; i++){
-            Salle salle1 = new Salle();
-            matriceDonjon.ajoutSalle(salle1);
+            Salle salle = new Salle();
+            salle.suppr_Porte();
+            matriceDonjon.ajoutSalle(salle);
         }
 
         matriceDonjon.printDonjon();
