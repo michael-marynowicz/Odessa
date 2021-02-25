@@ -14,7 +14,7 @@ public class Case {
     }
 
     Case(int vide){
-        this.printConsole = 0;
+        this.printConsole = vide;
     }
 
     Case(boolean isDoor, int porte){ //Sert à mettre un 2 dans la console (c'est plus lisible lol)
@@ -25,3 +25,5 @@ public class Case {
     public boolean isDoor() { return isDoor; }
     public int getPrintConsole(){ return this.printConsole; }
 }
+
+

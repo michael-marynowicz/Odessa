@@ -7,9 +7,9 @@ import java.util.List;
 public class Donjon {
 
     private int tailleX, tailleY;
-    private Case[][] matriceDonjon;
-    private List<Integer[]> coordonneeSalles = new ArrayList<Integer[]>(); //Contient les coordonnées des salles sous la forme : [[x1,y1,x2,y2],....]
-     ArrayList<ArrayList<ArrayList<Integer>>> coordoPortes = new ArrayList<ArrayList<ArrayList<Integer>>>(); //Contient les coordonnées des portes par rapport à l'index de coordonneSalles : [[[x1,y1], [x2,y2]],....]
+     Case[][] matriceDonjon;
+     List<Integer[]> coordonneeSalles = new ArrayList<Integer[]>(); //Contient les coordonnées des salles sous la forme : [[y1,x1,y2,x2],....]
+     ArrayList<ArrayList<ArrayList<Integer>>> coordoPortes = new ArrayList<ArrayList<ArrayList<Integer>>>(); //Contient les coordonnées des portes par rapport à l'index de coordonneSalles : [[[y1,x1], [y2,x2]],....]
 
     //Permet de bloquer le constructeur par défaut
     private Donjon(){}
