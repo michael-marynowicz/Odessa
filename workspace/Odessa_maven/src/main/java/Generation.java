@@ -51,86 +51,25 @@ public class Generation {
                 if (matrice.matriceDonjon[y][x - 1].printConsole == 0 || (matrice.matriceDonjon[y][x - 1].printConsole == 2 && x - 1 == fin.getCoordonneeX() && y == fin.getCoordonneeY()) ) {
                     Case tempo = new Case(x-1, y);
 
-                    if (tempo.getCoordonneeY() == fin.getCoordonneeY() && tempo.getCoordonneeX() == fin.getCoordonneeX()) {
-                        fin.setParent(s);
-                        break;
-                    }
-                    ajout = true;
-                    for(Case i : visited){
-                        if (i.getCoordonneeX() == tempo.getCoordonneeX() && i.getCoordonneeY() == tempo.getCoordonneeY()) {
-                            ajout = false;
-                            break;
-                        }
-                    }
-                    if(ajout){
-                        tempo.setParent(s);
-                        queue.add(tempo);
-                        visited.add(tempo);
-
-                    }
+                    if (voisin(fin, queue, visited, s, tempo)) break;
                 }
             }
             if ((y - 1 >= 0 && y - 1 < tailleY)) {
                 if (matrice.matriceDonjon[y - 1][x].printConsole == 0 || (matrice.matriceDonjon[y - 1][x].printConsole == 2 && x == fin.getCoordonneeX() && y - 1 == fin.getCoordonneeY())) {
                     Case tempo = new Case(x, y-1);
-                    if (tempo.getCoordonneeY() == fin.getCoordonneeY() && tempo.getCoordonneeX() == fin.getCoordonneeX()) {
-                        fin.setParent(s);
-                        break;
-                    }
-                    ajout = true;
-                    for(Case i : visited){
-                        if (i.getCoordonneeX() == tempo.getCoordonneeX() && i.getCoordonneeY() == tempo.getCoordonneeY()) {
-                            ajout = false;
-                            break;
-                        }
-                    }
-                    if(ajout){
-                        tempo.setParent(s);
-                        queue.add(tempo);
-                        visited.add(tempo);
-                    }
+                    if (voisin(fin, queue, visited, s, tempo)) break;
                 }
             }
             if ((x + 1 > 0 && x + 1 < tailleX)){
                 if( matrice.matriceDonjon[y][x + 1].printConsole == 0 || (matrice.matriceDonjon[y][x + 1].printConsole == 2 && x + 1 == fin.getCoordonneeX() && y == fin.getCoordonneeY())) {
                     Case tempo = new Case(x+1, y);
-                    if (tempo.getCoordonneeY() == fin.getCoordonneeY() && tempo.getCoordonneeX() == fin.getCoordonneeX()) {
-                        fin.setParent(s);
-                        break;
-                    }
-                    ajout = true;
-                    for(Case i : visited){
-                        if (i.getCoordonneeX() == tempo.getCoordonneeX() && i.getCoordonneeY() == tempo.getCoordonneeY()) {
-                            ajout = false;
-                            break;
-                        }
-                    }
-                    if(ajout){
-                        tempo.setParent(s);
-                        queue.add(tempo);
-                        visited.add(tempo);
-                    }
+                    if (voisin(fin, queue, visited, s, tempo)) break;
                 }
             }
             if( (y+1 > 0 && y+1 < tailleY)) {
                 if (matrice.matriceDonjon[y + 1][x].printConsole == 0 || (matrice.matriceDonjon[y + 1][x].printConsole == 2 && x == fin.getCoordonneeX() && y + 1 == fin.getCoordonneeY())) {
                     Case tempo = new Case(x, y+1);
-                    if (tempo.getCoordonneeY() == fin.getCoordonneeY() && tempo.getCoordonneeX() == fin.getCoordonneeX()) {
-                        fin.setParent(s);
-                        break;
-                    }
-                    ajout = true;
-                    for(Case i : visited){
-                        if (i.getCoordonneeX() == tempo.getCoordonneeX() && i.getCoordonneeY() == tempo.getCoordonneeY()) {
-                            ajout = false;
-                            break;
-                        }
-                    }
-                    if(ajout){
-                        tempo.setParent(s);
-                        queue.add(tempo);
-                        visited.add(tempo);
-                    }
+                    if (voisin(fin, queue, visited, s, tempo)) break;
                 }
             }
         }
@@ -157,6 +96,28 @@ public class Generation {
 
 
 
+    }
+
+    private static boolean voisin(Case fin, Queue<Case> queue, ArrayList<Case> visited, Case s, Case tempo) {
+        boolean ajout;
+        if (tempo.getCoordonneeY() == fin.getCoordonneeY() && tempo.getCoordonneeX() == fin.getCoordonneeX()) {
+            fin.setParent(s);
+            return true;
+        }
+        ajout = true;
+        for(Case i : visited){
+            if (i.getCoordonneeX() == tempo.getCoordonneeX() && i.getCoordonneeY() == tempo.getCoordonneeY()) {
+                ajout = false;
+                break;
+            }
+        }
+        if(ajout){
+            tempo.setParent(s);
+            queue.add(tempo);
+            visited.add(tempo);
+
+        }
+        return false;
     }
 
 }
