@@ -45,6 +45,9 @@ public class Donjon {
                     else if(values[j] == Pattern.Porte ){
                         System.out.print(ConsoleColors.RED + values[j].getPrintConsole() + ConsoleColors.RESET);
                     }
+                    else if(values[j] == Pattern.Couloir ){
+                        System.out.print(ConsoleColors.GREEN + values[j].getPrintConsole() + ConsoleColors.RESET);
+                    }
                     else{
                         System.out.print(ConsoleColors.RESET + values[j].getPrintConsole());
                     }
@@ -55,6 +58,9 @@ public class Donjon {
                     }
                     else if(values[j] == Pattern.Porte  ){
                         System.out.print(ConsoleColors.RED + values[j].getPrintConsole() + " ");
+                    }
+                    else if(values[j] == Pattern.Couloir ){
+                        System.out.print(ConsoleColors.GREEN + values[j].getPrintConsole() + " ");
                     }
                     else{
                         System.out.print(ConsoleColors.RESET + values[j].getPrintConsole() + " ");

@@ -11,6 +11,7 @@ public enum Pattern {
     static HashMap<Pattern, Case[][]> map = new HashMap<Pattern, Case[][]>();
     static Case Porte = new Case(true, 2);
     static Case Simple = new Case(false);
+    static Case Couloir = new Case(3);
     static Case Mur = new Case(0);
 
     public static void genPattern() {
