@@ -1,4 +1,4 @@
-package main.java;
+
 
 import java.util.*;
 
@@ -26,7 +26,6 @@ public class Salle {
         this.positionDesPortes =  this.reperePorte();
         this.corrigerPortes();
     }
-
     Salle(int coordonneeY, int coordonneeX){
         this.coordonneeY = coordonneeY;
         this.coordonneeX = coordonneeX;

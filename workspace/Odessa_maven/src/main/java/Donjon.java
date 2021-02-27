@@ -1,4 +1,4 @@
-package main.java;
+
 
 import java.sql.Time;
 import java.util.ArrayList;
@@ -7,8 +7,9 @@ import java.util.List;
 public class Donjon {
 
     private int tailleX, tailleY;
-    private Case[][] matriceDonjon;
-    private List<Integer[]> coordonneeSalles = new ArrayList<Integer[]>(); //Contient les coordonnées des salles sous la forme : [[x1,y1,x2,y2],....]
+     Case[][] matriceDonjon;
+     List<Integer[]> coordonneeSalles = new ArrayList<Integer[]>(); //Contient les coordonnées des salles sous la forme : [[y1,x1,y2,x2],....]
+     ArrayList<ArrayList<ArrayList<Integer>>> coordoPortes = new ArrayList<ArrayList<ArrayList<Integer>>>(); //Contient les coordonnées des portes par rapport à l'index de coordonneSalles : [[[y1,x1], [y2,x2]],....]
 
     //Permet de bloquer le constructeur par défaut
     private Donjon(){}
@@ -44,6 +45,9 @@ public class Donjon {
                     else if(values[j] == Pattern.Porte ){
                         System.out.print(ConsoleColors.RED + values[j].getPrintConsole() + ConsoleColors.RESET);
                     }
+                    else if(values[j] == Pattern.Couloir ){
+                        System.out.print(ConsoleColors.GREEN + values[j].getPrintConsole() + ConsoleColors.RESET);
+                    }
                     else{
                         System.out.print(ConsoleColors.RESET + values[j].getPrintConsole());
                     }
@@ -54,6 +58,9 @@ public class Donjon {
                     }
                     else if(values[j] == Pattern.Porte  ){
                         System.out.print(ConsoleColors.RED + values[j].getPrintConsole() + " ");
+                    }
+                    else if(values[j] == Pattern.Couloir ){
+                        System.out.print(ConsoleColors.GREEN + values[j].getPrintConsole() + " ");
                     }
                     else{
                         System.out.print(ConsoleColors.RESET + values[j].getPrintConsole() + " ");
@@ -86,7 +93,7 @@ public class Donjon {
     }
 
 
-    void ajoutSalle(Salle salle) {
+    boolean ajoutSalle(Salle salle) {
         if(verifierPlacementSalle(salle)) {
             for (int salleY = 0; salleY < salle.getHeight(); salleY++) {
                 if (salle.getWidth() >= 0)
@@ -94,7 +101,11 @@ public class Donjon {
             }
             Integer[] coordonnee = {salle.getCoordonneeY(), salle.getCoordonneeX(), salle.getHeight(), salle.getWidth()};
             coordonneeSalles.add(coordonnee);
+            coordoPortes.add(salle.positionDesPortes);
+            return true;
         }
+        return false;
+
     }
 
 }
